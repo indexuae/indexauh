@@ -1,0 +1,354 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const countryCodes = [
+  { code: "+973", label: "BH +973" },
+  { code: "+91", label: "IN +91" },
+  { code: "+971", label: "AE +971" },
+  { code: "+44", label: "GB +44" },
+  { code: "+1", label: "US +1" },
+]
+
+const serviceOptions = [
+  "Company Formation",
+  "PRO Services",
+  "Attestation / Legalization / Authentication / Apostille",
+  "PCC (Good Standing Certificate)",
+  "Legal Translation Services",
+  "PAN Card Services",
+  "Credential Evaluation Services",
+  "Other Services",
+]
+
+const purposes = [
+  {
+    title: "Expanding Market Access",
+    body: "The UAE provides access to a rapidly expanding market with a geographical advantage and a business-friendly environment. Its strategic location acts as a bridge between major markets, making it an attractive choice for those seeking to expand their business horizons.",
+  },
+  {
+    title: "Tax Advantages",
+    body: "Setting up a company in the UAE offers significant tax advantages that contribute to sustained growth and development for businesses of all sizes.",
+  },
+  {
+    title: "Enhanced Asset Protection",
+    body: "Company formation in the UAE provides enhanced asset protection and improved business credibility, all of which contribute to a secure and prosperous business environment.",
+  },
+]
+
+const benefits = [
+  {
+    title: "Expert Guidance",
+    body: "The Index Office Services comprises professionals with extensive expertise in the intricacies of company formation in the UAE. Our knowledge ensures a seamless process that aligns with legal and regulatory requirements.",
+  },
+  {
+    title: "Tailored Solutions",
+    body: "Recognizing the uniqueness of each business, Index Office Services offers customized solutions tailored to the specific needs and aspirations of their clients. This approach ensures that company formation caters to business objectives and preferences.",
+  },
+  {
+    title: "Comprehensive Services",
+    body: "From initial consultations to document preparation, approvals, and licensing, Index Office Services provides comprehensive assistance throughout the company formation process. This end-to-end support saves clients time and effort while ensuring compliance with all necessary procedures.",
+  },
+  {
+    title: "Wide Network and Connections",
+    body: "Index Office Services has extensive network and established connections within the UAE that expedite approvals and facilitate smoother interactions with government entities. This network proves invaluable in streamlining the company formation process.",
+  },
+  {
+    title: "Compliance and Legal Adherence",
+    body: "Compliance with the UAE's legal and regulatory framework is essential for a successful business setup. Index Office Services ensures strict adherence to local laws and regulations throughout the company formation process, mitigating risks and ensuring a smooth transition into the UAE market.",
+  },
+  {
+    title: "Transparency and Communication",
+    body: "Index Office Services maintains transparent communication throughout the company formation journey. Clients are regularly updated and informed about the progress, ensuring they have a clear understanding of the process and are empowered to make informed decisions.",
+  },
+]
+
+const faqs = [
+  {
+    q: "How can Indexauh guide me in selecting the right business structure in the UAE?",
+    a: "Indexauh assesses your business activity, ownership goals, and target market to help you choose between mainland, free zone, or offshore structures. This ensures your company is created in the most suitable jurisdiction for your expansion plans.",
+  },
+  {
+    q: "Does Indexauh support foreign investors who want 100 percent ownership in the UAE?",
+    a: "Yes. Indexauh explains the sectors that allow full foreign ownership and guides investors through the licensing and registration steps so they can set up with full control in eligible activities.",
+  },
+  {
+    q: "Can Indexauh help with preparing documents needed for UAE company formation?",
+    a: "Indexauh assists with all essential paperwork, including identification, business activity details, approvals, legal drafts, and government submissions. This makes the documentation stage smooth and error free.",
+  },
+  {
+    q: "How does Indexauh manage communications with UAE government authorities during setup?",
+    a: "Indexauh coordinates with economic departments, free zone authorities, and additional regulatory bodies on your behalf. This includes submitting forms, tracking progress, and updating you at every stage.",
+  },
+  {
+    q: "Does Indexauh assist with securing a trade name and initial approvals for UAE business setup?",
+    a: "Yes. Indexauh handles trade name reservation, activity selection, and initial clearances required before license issuance. These early steps help move your application forward quickly.",
+  },
+  {
+    q: "Can Indexauh help me arrange an office space or registered address required for licensing?",
+    a: "Indexauh supports clients in choosing the right office option based on the jurisdiction. This can include shared desks, offices, warehouses, or virtual office packages needed for license approval.",
+  },
+  {
+    q: "Does Indexauh offer bank account assistance after company registration in the UAE?",
+    a: "Yes. Indexauh guides clients through the banking requirements and helps prepare the forms and documents needed to open a corporate bank account in the UAE.",
+  },
+  {
+    q: "How can Indexauh support companies that want to expand into multiple emirates?",
+    a: "Indexauh provides guidance for businesses planning to operate across UAE regions by explaining rules for mainland activities and helping secure additional approvals when needed.",
+  },
+  {
+    q: "Does Indexauh provide visa and PRO services once the company is formed?",
+    a: "Yes. Indexauh manages investor visas, employee visas, Emirates ID steps, and other PRO tasks to help your business function smoothly after incorporation.",
+  },
+  {
+    q: "Can Indexauh advise me on UAE corporate tax and compliance after business setup?",
+    a: "Indexauh offers guidance on corporate tax registration, accounting needs, and compliance obligations so your business meets UAE regulations from the beginning.",
+  },
+]
+---
+
+<BaseLayout
+  title="Company Formation in the UAE | Business Setup Experts"
+  description="Start your company formation in the UAE with Indexauh. Our experienced team ensures a smooth and efficient process to establish your business successfully."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .idx-form input, .idx-form select, .idx-form textarea { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; font-size: 0.85rem; color: #374151; outline: none; font-family: inherit; background: #fff; box-sizing: border-box; }
+  .idx-form input:focus, .idx-form select:focus, .idx-form textarea:focus { border-color: #38B2AC; box-shadow: 0 0 0 3px rgba(56,178,172,0.15); }
+  .idx-form textarea { resize: none; }
+  .idx-submit { width: 100%; background: #2D3748; color: #fff; font-weight: 700; padding: 13px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; letter-spacing: 0.04em; transition: background 0.2s; }
+  .idx-submit:hover { background: #1A202C; }
+  .company-card { background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 24px; transition: all 0.25s; }
+  .company-card:hover { border-color: #B2F5EA; box-shadow: 0 12px 32px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 300px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-9.webp"
+    alt="Company Formation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Convenient</span>
+      <span class="idx-pill">Budget-Friendly</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+      <span class="idx-pill">Genuine</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      COMPANY FORMATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:680px;">
+      The United Arab Emirates has emerged as a thriving hub for global business ventures, attracting entrepreneurs and investors from around the world. The process of company formation in the UAE is a strategic and meticulously planned endeavour that involves establishing a business entity within this dynamic and prosperous region.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PURPOSE ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Purpose of Company Formation in the UAE</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:20px;">
+        The purpose of initiating company formation in the UAE is manifold. Primarily, it provides access to a rapidly expanding market, a geographical advantage, and a business-friendly environment. The UAE's strategic location acts as a bridge between major markets, making it an attractive choice for those seeking to expand their business horizons.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {purposes.map(p => (
+          <div style="background:#F8FAFF;border:1px solid #E2E8F0;border-left:3px solid #38B2AC;border-radius:10px;padding:14px 16px;">
+            <p style="font-size:1.05rem;color:#1A202C;font-weight:700;margin:0 0 4px;">{p.title}</p>
+            <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/uae-flag.webp" alt="Company formation UAE" style="width:100%;height:440px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Professional Company Formation in the UAE</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">End-to-end support by Index Office Services</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          2500+ Companies Formed
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ BENEFITS ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-41.webp" alt="UAE business setup benefits" style="width:100%;height:220px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Why Index</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Benefits of Choosing Index Office Services for Company Formation in the UAE</h2>
+      </div>
+    </div>
+
+    <div class="three-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      {benefits.map(b => (
+        <div class="company-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 10px;border-left:3px solid #38B2AC;padding-left:10px;">{b.title}</h3>
+          <p style="font-size:0.98rem;color:#4B5563;line-height:1.7;margin:0;">{b.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE US ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div class="split-grid" style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="Index Office Services team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">9+ Countries · Global Reach</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+          Company formation in the UAE opens up a world of opportunities for businesses aiming to capitalize on the region's growth and favourable business environment.
+        </p>
+        <p style="color:#94A3B8;font-size:1rem;line-height:1.8;">
+          Index Office Services has expertise and commitment to personalized solutions make them a dependable partner in navigating the complex process of company formation and company registration in the UAE, setting the stage for a successful and prosperous venture.
+        </p>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;margin-bottom:52px;">
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin:0 0 12px;">
+        Company formation in the UAE opens up a world of opportunities for businesses aiming to capitalize on the region's growth and favourable business environment. Index Office Services has expertise and commitment to personalized solutions make them a dependable partner in navigating the complex process of company formation and company registration in the UAE.
+      </p>
+      <p style="color:#94A3B8;font-size:1rem;line-height:1.8;margin:0;">
+        We have a dedicated and experienced team that has been at the forefront in ensuring effective services in Company formation and facilitated easy setup of new businesses of aspiring businessmen. The services are provided within a fixed budget and has proved to be very effective.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;">
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">2500</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Companies Formed</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FREQUENTLY ASKED QUESTIONS</h2>
+      <p style="color:#4B5563;font-size:1.05rem;margin-top:12px;">UAE Company Formation FAQs</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Free Consultation</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">Contact Us</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        If you require immediate assistance, you can also reach us using the contact numbers provided.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL NOW: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

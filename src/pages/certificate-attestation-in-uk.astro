@@ -1,0 +1,620 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const countryCodes = [
+  { code: "+91", label: "IN +91" },
+  { code: "+971", label: "AE +971" },
+  { code: "+44", label: "GB +44" },
+  { code: "+1", label: "US +1" },
+  { code: "+973", label: "BH +973" },
+]
+
+const whenNeeded = [
+  "Job offer or employment visa processing in the UAE",
+  "Family sponsorship for spouse, children, or dependents",
+  "School, college, or university admissions in the UAE",
+  "Professional licence or membership applications",
+  "Business setup or company-related procedures",
+  "Government or legal document submissions in the UAE",
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents",
+    icon: "👤",
+    docs: [
+      "Marriage certificate attestation",
+      "Birth certificate attestation",
+      "Police Clearance Certificate",
+      "Divorce Certificate Attestation",
+      "Salary Certificate Attestation",
+      "Death Certificate Attestation",
+      "Medical Certificate Attestation",
+      "Affidavit",
+    ],
+  },
+  {
+    category: "Educational Documents",
+    icon: "🎓",
+    docs: [
+      "Degree certificate attestation",
+      "Diploma certificate attestation",
+      "School leaving certificates",
+      "Mark sheets and transcripts",
+      "Transfer Certificate Attestation",
+    ],
+  },
+  {
+    category: "Commercial Documents",
+    icon: "⚖️",
+    docs: [
+      "Power of Attorney",
+      "Company incorporation documents",
+      "Memorandum of Association",
+      "Articles of Association",
+      "Commercial agreements",
+      "Board resolutions",
+      "Trade and business documents",
+    ],
+  },
+]
+
+const processSteps = [
+  { step: "01", title: "Document Verification & Preparation", desc: "Submit your original documents to Index Office Services. We review them for completeness, accuracy, and suitability before initiating the process." },
+  { step: "02", title: "FCDO Apostille", desc: "Your documents are submitted to the UK's Foreign, Commonwealth & Development Office (FCDO) for apostille — an official stamp confirming the document's authenticity." },
+  { step: "03", title: "UAE Embassy Attestation in London", desc: "Documents are submitted to the UAE Embassy in London for counter attestation (legalization) along with all required supporting documents." },
+  { step: "04", title: "<a href='/mofa-attestation-in-uae/' style='color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>MOFA Attestation in the UAE</a>", desc: "Final attestation is completed by the UAE Ministry of Foreign Affairs (MOFA), making your documents officially accepted for use in the UAE." },
+]
+const spotlightDocs = [
+  {
+    title: "UK Marriage Certificate Attestation UAE",
+    steps: ["Obtain original UK marriage certificate", "FCDO Apostille", "UAE Embassy Attestation", "MOFA Attestation in the UAE"],
+    uses: ["Spouse visa application", "Family sponsorship", "Dependent residency", "Government documentation"],
+  },
+  {
+    title: "UK Degree Certificate Attestation for UAE",
+    steps: ["Degree verification (if required)", "Additional certification (if applicable)", "FCDO Apostille", "<a href='/embassy-attestation-in-uae/' style='color:#4B5563;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE Embassy Attestation</a>", "MOFA Attestation in the UAE"],
+    uses: ["Employment visa application", "Professional licensing", "Career progression", "Higher education admission"],
+  },
+  {
+    title: "UK Birth Certificate Attestation for UAE",
+    steps: ["Obtain official birth certificate", "FCDO Apostille", "UAE Embassy Attestation", "MOFA Attestation in the UAE"],
+    uses: ["Child sponsorship", "Family residency", "School admission", "Government procedures"],
+  },
+]
+
+const apostilleVsUAE = [
+  { aspect: "Issued by", apostille: "UK Foreign, Commonwealth & Development Office (FCDO)", uae: "UAE Embassy in London and the UAE Ministry of Foreign Affairs (MOFA)" },
+  { aspect: "Purpose", apostille: "Confirms that a UK document is authentic", uae: "Confirms that the document is legally accepted for use in the UAE" },
+  { aspect: "Scope", apostille: "Used for international document authentication", uae: "Required specifically for official use within the UAE" },
+  { aspect: "Stage", apostille: "One stage of the legalization process", uae: "Final stages of the legalization process" },
+  { aspect: "Sufficiency", apostille: "Alone is usually not sufficient for UAE authorities", uae: "Generally required before a UK document can be submitted in the UAE" },
+]
+
+const timingFactors = [
+  "Type of certificate",
+  "Verification requirements",
+  "Embassy processing periods",
+  "Public holidays",
+  "Courier transit times",
+]
+
+const challenges = [
+  "Incorrect document versions",
+  "Name discrepancies",
+  "Missing supporting documents",
+  "Damaged certificates",
+  "Incomplete legalization procedures",
+  "Delays between authorities",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Talk to us", desc: "Share what document you need to attest and why." },
+  { step: "02", title: "Send your documents", desc: "We'll check everything and confirm the exact process." },
+  { step: "03", title: "We process it", desc: "Our team handles FCDO, Embassy, and MOFA steps for you." },
+  { step: "04", title: "Get your documents back", desc: "Your documents are returned after all required attestations have been completed for UAE use." },
+]
+
+const whyChoose = [
+  { title: "25+ Years of Industry Experience", desc: "Over two decades handling certificate attestation with deep knowledge of FCDO procedures and embassy requirements." },
+  { title: "200+ Attestation Professionals", desc: "A large, dedicated team ensuring your documents are handled by experienced specialists at every stage." },
+  { title: "24/7 Customer Support", desc: "Our support team is available around the clock to answer queries and provide real-time status updates." },
+  { title: "100+ Countries Covered", desc: "We manage certificate attestation for documents from over 100 countries, with a global network of associates." },
+  { title: "Worldwide Collection & Delivery", desc: "We collect and deliver documents worldwide, making the process seamless regardless of your location." },
+  { title: "Secure Document Handling", desc: "Strict confidentiality protocols and tracked physical transfers keep your documents safe at every step." },
+]
+
+const faqs = [
+  { q: "Is Apostille enough for UAE use?", a: "No. In most cases, UAE Embassy attestation and MOFA attestation are also required." },
+  { q: "Can I attest a UK degree certificate while staying in the UAE?", a: "Yes, you can. Our team can assist with the process without requiring you to travel to the UK." },
+  { q: "Can UK marriage certificates be attested for UAE family visas?", a: "Yes. Marriage certificate attestation is commonly required for spouse and family sponsorship applications." },
+  { q: "Can UK birth certificates be attested for child sponsorship?", a: "Yes. Attested birth certificates are often required for child visa and residency procedures." },
+  { q: "Is MOFA attestation necessary?", a: "Yes. MOFA attestation is usually the final step before a UK document can be officially accepted in the UAE." },
+  { q: "Can commercial documents be attested?", a: "Yes. We assist with the attestation of various UK commercial documents for business use in the UAE." },
+]
+import DocumentCoverage from '../components/DocumentCoverage.astro';
+---
+
+<BaseLayout
+  title="UK Certificate Attestation in the UAE | Index Office Services"
+  description="Need UK certificate attestation in UAE? With 25+ years of experience, Index Office Services handles the process smoothly. Call now!"
+>
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  /* Responsive grid classes — these override inline styles via !important */
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .four-col { display: grid !important; }
+  .five-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .four-col { grid-template-columns: 1fr 1fr !important; }
+    .five-col { grid-template-columns: 1fr 1fr !important; }
+
+    /* Stack images before text on mobile */
+    .img-first { order: -1 !important; }
+
+    /* Constrain hero buttons */
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+
+    /* Get started 5-col grid */
+    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-32.webp"
+    alt="Certificate Attestation in the UK — London"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Convenient</span>
+      <span class="idx-pill">Budget-Friendly</span>
+      <span class="idx-pill">25+ Yrs Experience</span>
+      <span class="idx-pill">Genuine</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      CERTIFICATE ATTESTATION<br/>IN THE UK
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Received a job offer in the UAE? Planning to sponsor your spouse or children? Looking to have a UK degree, diploma, or professional certificate recognized in the UAE? Index Office Services handles the complete attestation process — fast, reliable, and hassle-free.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What is Certificate Attestation in the UK?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        Certificate attestation is a process of verifying the authenticity of a document by a competent authority. It is required when you want to use a document issued in one country in another country.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:14px;">
+        From degree certificates and marriage certificates to ACCA and NEBOSH qualifications, many UK-issued documents require attestation before they can be used in the UAE. Certificate attestation ensures your documents are genuine, valid, and recognized by UAE authorities.
+      </p>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:20px;">
+        The procedure can be long and complex, especially for those unfamiliar with the formalities. Index Office Services handles the complete process quickly and efficiently on your behalf.
+      </p>
+
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <h3 style="color:#1A202C;font-size:0.95rem;font-weight:700;margin:0 0 6px;">Key Insight — FCDO Apostille</h3>
+        <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0;">
+          UK attestation typically begins with an apostille from the Foreign, Commonwealth &amp; Development Office (FCDO) — an official certificate confirming your document is authentic and issued by a recognized UK authority.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/uk-flag.webp" alt="UK document attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">FCDO · UAE Embassy · MOFA</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete UK attestation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHEN DO YOU NEED ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-11.webp" alt="When to get UK certificate attestation" style="width:100%;height:400px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">When You Need Attestation</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Visa · Business · Education · Family</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Situations</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">When Do You Need UK Document Attestation for UAE?</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          You may need UK document attestation for UAE in the following situations:
+        </p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whenNeeded.map(item => (
+            <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
+              <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<DocumentCoverage
+  title="Our UK Document Attestation Services"
+  description="We handle attestation for a wide range of document categories. Always check with the requesting authority to confirm exactly what form of attestation they require."
+  imageSrc="/images/img-1.webp"
+  imageAlt="Document types for UK attestation"
+  docTypes={docTypes}
+  country="uk"
+/>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="UK attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">UK Certificate Attestation Process for UAE</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+  {processSteps.map(s => (
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+      <div>
+        <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;" set:html={s.title}></p>
+        <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+      <div>
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);margin-bottom:24px;">
+          <img src="/images/img-16.webp" alt="Timing factors UK attestation" style="width:100%;height:280px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.78) 100%);"></div>
+          <div style="position:absolute;bottom:18px;left:18px;right:18px;">
+            <p style="color:#fff;font-size:1.05rem;font-weight:800;margin:0 0 3px;">Processing Time Varies</p>
+            <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">FCDO apostille: 1–5 days · Embassy &amp; MOFA: 1–15 days</p>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Factors That Affect Processing Time</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {timingFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.98rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SPOTLIGHT DOCUMENTS ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Common Requests</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0;">Popular UK Attestation Services for UAE</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="three-col">
+      {spotlightDocs.map(doc => (
+        <div class="spotlight-card">
+          <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 18px;padding-bottom:12px;border-bottom:2px solid #B2F5EA;">{doc.title}</h3>
+          <p style="font-size:0.75rem;font-weight:700;color:#38B2AC;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 10px;">Process</p>
+         <ol style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px;counter-reset:step-counter;">
+  {doc.steps.map((s, i) => (
+    <li style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:#4B5563;line-height:1.5;">
+      <span style="background:#2D3748;color:#38B2AC;font-weight:800;font-size:0.7rem;width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{i+1}</span>
+      <span set:html={s}></span>
+    </li>
+  ))}
+</ol>
+          <p style="font-size:0.75rem;font-weight:700;color:#38B2AC;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 10px;">Common Uses</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            {doc.uses.map(u => (
+              <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:9999px;">{u}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ APOSTILLE VS UAE ATTESTATION ════ -->
+<section style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Understanding the Difference</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Apostille and UAE Attestation</h2>
+      <p style="color:#4B5563;font-size:1rem;line-height:1.75;max-width:660px;margin:0 auto;">
+        Many applicants assume that an Apostille is enough for UAE use. However, the UAE requires additional legalization before a UK document can be officially accepted.
+      </p>
+    </div>
+
+    <div style="overflow-x:auto;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.07);border:1px solid #e5e7eb;">
+      <table class="apostille-table" style="width:100%;border-collapse:collapse;background:#fff;">
+        <thead>
+          <tr>
+            <th style="background:#2D3748;color:#fff;font-size:0.8rem;font-weight:700;padding:14px 20px;text-align:left;width:20%;">Aspect</th>
+            <th style="background:#38B2AC;color:#fff;font-size:0.8rem;font-weight:700;padding:14px 20px;text-align:left;width:40%;">Apostille</th>
+            <th style="background:#2D3748;color:#fff;font-size:0.8rem;font-weight:700;padding:14px 20px;text-align:left;width:40%;">UAE Attestation</th>
+          </tr>
+        </thead>
+        <tbody>
+          {apostilleVsUAE.map((row, i) => (
+            <tr style={`background:${i % 2 === 0 ? '#fff' : '#F8FAFF'};`}>
+              <td style="padding:14px 20px;font-size:0.82rem;font-weight:700;color:#1A202C;border-bottom:1px solid #eef0f6;">{row.aspect}</td>
+              <td style="padding:14px 20px;font-size:0.82rem;color:#4B5563;line-height:1.6;border-bottom:1px solid #eef0f6;">{row.apostille}</td>
+              <td style="padding:14px 20px;font-size:0.82rem;color:#4B5563;line-height:1.6;border-bottom:1px solid #eef0f6;">{row.uae}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CHALLENGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="two-col">
+
+      <!-- Timing -->
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Timeline</p>
+        <h2 style="font-size:1.7rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How Long Does UK Certificate Attestation Take?</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:20px;">
+          Processing times vary depending on the document type and the authorities involved. Starting the process early helps prevent delays when documents are needed urgently.
+        </p>
+        <div style="background:#F8FAFF;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.9rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Typical Factors Affecting Timelines</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            {timingFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Challenges -->
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.7rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Challenges During UK Certificate Attestation</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:20px;">
+          Applicants often face delays because of avoidable issues. Professional guidance can help identify these problems before submission.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {challenges.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:900px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
+      Getting started with Index is straightforward. Follow these four steps to begin your UK certificate attestation for UAE.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left;" class="three-col">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;overflow:hidden;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="Index Office Services UK attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Index Office Services</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose Index for Certificate Attestation in the UK?</h2>
+       <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+  Index is a leading service provider for <a href="/certificate-attestation/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> in the UK. With over 25 years of experience, we offer fast, reliable, and affordable services for all document types — managed by a team of qualified professionals with global reach.
+</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:48px;margin-top:52px;" class="two-col">
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">25+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Years of Experience</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">200+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Attestation Professionals</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">100+</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Countries Covered</p>
+      </div>
+      <div>
+        <p style="font-size:2.8rem;font-weight:900;color:#38B2AC;margin:0;">24/7</p>
+        <p style="color:#81E6D9;font-size:0.9rem;margin:6px 0 0;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Customer Support</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">GET IN TOUCH WITH INDEX TODAY FOR ATTESTATION SERVICES.</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        If you are looking for certificate attestation in the UK, look no further than Index. Our global network allows us to handle your requirements from anywhere in the world.
+      </p>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.8;margin-bottom:28px;">
+        If you require immediate assistance, you can also reach us using the contact numbers provided. We are available on WhatsApp via all of these numbers.
+      </p>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

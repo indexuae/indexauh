@@ -1,0 +1,505 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const whenNeeded = [
+  "Job seekers attesting Greek degree or birth certificate",
+  "Family applying for spouse visa with marriage certificate",
+  "Students attesting academic documents for higher studies",
+  "Using a UAE issued certificate officially in Greece",
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents",
+    icon: "👤",
+    docs: [
+      "Marriage certificate attestation",
+      "Birth certificate attestation",
+      "Divorce Certificate Attestation",
+      "Death Certificate Attestation",
+      "PCC Attestation",
+      "Medical Certificate Attestation",
+      "Single Status Certificate Attestation",
+      "Affidavit",
+    ],
+  },
+  {
+    category: "Educational Documents",
+    icon: "🎓",
+    docs: [
+      "Degree Certificate Attestation",
+      "Diploma Certificate Attestation",
+      "School Certificate Attestation",
+      "Mark Sheets Attestation",
+      "Technical Certificate Attestation",
+      "Nursing Certificate Attestation",
+      "Engineering Certificate Attestation",
+      "Transcript Attestation",
+    ],
+  },
+  {
+    category: "Commercial Documents",
+    icon: "⚖️",
+    docs: [
+      "Power of Attorney Attestation",
+      "Company Incorporation Documents Attestation",
+      "Memorandum of Association Attestation",
+      "Articles of Association Attestation",
+      "Board Resolution Attestation",
+      "Commercial Invoice Attestation",
+      "Commercial License",
+    ],
+  },
+]
+
+const processToUAE = [
+  { step: "01", title: "Local Authority Attestation in Greece", desc: "The document is first verified by the relevant local authority in Greece." },
+  { step: "02", title: "Greece Ministry of Foreign Affairs Approval", desc: "The Greek Ministry of Foreign Affairs confirms the authenticity of the document." },
+  { step: "03", title: "UAE Embassy Stamp in Greece", desc: "The UAE Embassy in Greece adds its seal to confirm the document can be used in the UAE." },
+  { step: "04", title: "Final MOFA Attestation in UAE", desc: "The UAE Ministry of Foreign Affairs provides the final approval stamp." },
+]
+
+const processToGreece = [
+  { step: "01", title: "Notary Attestation in UAE", desc: "The document is first verified by an authorized notary in the UAE." },
+  { step: "02", title: "UAE Ministry of Foreign Affairs Approval", desc: "The UAE MOFA confirms the authenticity of the document." },
+  { step: "03", title: "Greece Embassy Attestation from Greece Embassy Abu Dhabi", desc: "The Greek consulate Abu Dhabi handles embassy legalization for the document." },
+  { step: "04", title: "Translation into Greek Language When Required", desc: "Documents are translated into Greek where the receiving authority requires it." },
+]
+
+const docsRequired = [
+  "Original certificate",
+  "Passport copy",
+  "Visa copy in some cases",
+  "Authorization letter for submission through IndexAUH",
+]
+
+const timingFactors = [
+  "Document type",
+  "Approval stages involved",
+]
+
+const feeFactors = [
+  "Type of document",
+  "Country of issue",
+  "Translation requirement",
+  "Number of certificates",
+]
+
+const challenges = [
+  "Submitting damaged certificates",
+  "Missing prior attestation",
+  "Incorrect translation",
+  "Signature mismatch",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Contact IndexAUH", desc: "Contact IndexAUH by phone or email." },
+  { step: "02", title: "Send Document for Review", desc: "Send a copy of your document for review." },
+  { step: "03", title: "Receive Confirmation", desc: "Receive confirmation of process, time, and cost." },
+  { step: "04", title: "Submit Original Certificate", desc: "Submit your original certificate." },
+  { step: "05", title: "Collect Completed Document", desc: "Collect your completed document." },
+]
+
+const whyChoose = [
+  { title: "25+ Years of Experience", desc: "More than 25 years of hands on experience in certificate attestation services across the UAE." },
+  { title: "Deep Knowledge of Requirements", desc: "Our team understands the exact requirements of the Greece Embassy Abu Dhabi and related authorities." },
+  { title: "Careful Document Review", desc: "Every document is reviewed carefully before submission to avoid delays." },
+  { title: "Regular Status Updates", desc: "Regular status updates keep you informed at every stage." },
+  { title: "Support for Both Directions", desc: "Support is available for both directions of attestation." },
+  { title: "Two Convenient Offices", desc: "Offices in Abu Dhabi and Dubai make access easy." },
+]
+
+const faqs = [
+  { q: "Can I attest a laminated document?", a: "No. Laminated documents are usually not accepted for embassy legalization. You may need to remove lamination or get a fresh copy issued before starting the process." },
+  { q: "Do I need to submit my original certificate?", a: "Yes. The original document is required for Greece Embassy Attestation. Photocopies are not accepted for final approval." },
+  { q: "What happens if my document has spelling mistakes?", a: "Errors in name, date of birth, or other details can cause rejection. It is better to correct mistakes from the issuing authority before starting the attestation process." },
+  { q: "Can commercial documents be attested for company use in Greece?", a: "Yes. Business documents can be legalized for official use in Greece after proper approvals from UAE authorities and the Greek embassy." },
+]
+import DocumentCoverage from '../components/DocumentCoverage.astro';
+---
+
+<BaseLayout
+  title="Greece Embassy Attestation in UAE | Indexauh"
+  description="Greece Embassy Attestation in UAE by IndexAUH with 25+ years of experience. Trusted by thousands of clients across UAE."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .four-col { display: grid !important; }
+  .five-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .four-col { grid-template-columns: 1fr 1fr !important; }
+    .five-col { grid-template-columns: 1fr 1fr !important; }
+    .img-first { order: -1 !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+    .get-started-grid { grid-template-columns: 1fr 1fr !important; }
+    .process-split { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Greece Embassy Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">MOFA Attestation</span>
+      <span class="idx-pill">Embassy Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      GREECE EMBASSY ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Greece Embassy Attestation is required when you want to use a Greek document in the UAE or a UAE document in Greece. It proves your certificate is genuine and legally accepted. IndexAUH has over 25 years of experience in handling embassy approvals across the UAE. Our team manages the complete process with care, speed, and accuracy.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHEN DO YOU NEED ════ -->
+<section id="details" style="background:#F8FAFF;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:0.9fr 1.4fr;gap:48px;align-items:center;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/greece-flag.webp" alt="When to get Greece embassy attestation" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">When You Need Attestation</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Visa · Business · Education · Family</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Key Situations</p>
+        <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Situations Where Greece Embassy Attestation Is Mandatory</h2>
+        <p style="color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+          You need the Greece Embassy Attestation for many reasons. The same applies in reverse — when you plan to use a UAE issued certificate in Greece, the Greece Embassy Attestation makes it valid there. Without proper attestation, authorities will not accept your documents.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {whenNeeded.map(item => (
+            <div style="display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #eef0f6;border-radius:12px;padding:14px 18px;">
+              <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+              <p style="font-size:0.9rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<DocumentCoverage
+  title="Our Greece Embassy Attestation Services"
+  description="We handle attestation for a wide range of document categories across personal, educational, and commercial needs."
+  imageSrc="/images/img-1.webp"
+  imageAlt="Document types for Greece attestation"
+  docTypes={docTypes}
+  country="greece"
+/>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="Greece attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:520px;line-height:1.25;">Greece Embassy Attestation Process</h2>
+      </div>
+    </div>
+
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 32px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto;">
+      There are two types of processes based on where your document was issued.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;" class="process-split two-col">
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 14px;">For Greek Issued Documents to Use in UAE</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {processToUAE.map(s => (
+            <div class="step-card">
+              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+              <div>
+                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:16px;margin-top:14px;">
+          <p style="font-size:0.85rem;color:#4B5563;line-height:1.7;margin:0;">After these steps, your document becomes legally valid in the UAE. Greece Embassy Attestation must follow this order to avoid delay or rejection.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:#1A202C;margin:0 0 14px;">For UAE Issued Documents to Use in Greece</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {processToGreece.map(s => (
+            <div class="step-card">
+              <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+              <div>
+                <p style="font-size:0.95rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+                <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:16px;margin-top:14px;">
+          <p style="font-size:0.85rem;color:#4B5563;line-height:1.7;margin:0;">The Greek consulate Abu Dhabi handles embassy legalization for many UAE issued documents. Once completed, your certificate can be used officially in Greece.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      <!-- Documents Required -->
+      <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">To begin the process, you usually need:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {docsRequired.map(d => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Our team checks your documents before submission to avoid mistakes.</p>
+      </div>
+
+      <!-- Timing -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does It Take?</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on document type and approval stages. Some documents move faster. Commercial documents may take longer due to additional checks. Processing time depends on:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {timingFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Our team gives you a clear timeline after reviewing your certificate, with urgent support for time sensitive cases.</p>
+      </div>
+
+      <!-- Fees -->
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Greece Embassy Attestation Fees</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">We provide transparent pricing. You will know the full cost before we start. The cost depends on:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {feeFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CHALLENGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes That Cause Rejection</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Many delays happen due to simple errors. Greece Embassy Attestation must follow correct steps. We review everything carefully to prevent rejection.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {challenges.map(c => (
+            <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+              <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+              <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);">
+        <img src="/images/img-16.webp" alt="Common mistakes in attestation" style="width:100%;height:380px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">Avoid Rejection</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">We check everything before submission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Greece Embassy Attestation?</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
+      Our team handles the full Greece Embassy Attestation process while you stay stress free.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:left;" class="three-col">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="IndexAUH Greece attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          IndexAUH brings more than 25 years of hands on experience in certificate attestation services across the UAE. With the right experts managing each step, Greece Embassy Attestation becomes smooth and stress free from start to finish.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">START YOUR GREECE EMBASSY ATTESTATION TODAY</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Contact us now and get a quick quote from our attestation specialists.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Abu Dhabi Office</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 26311560</p>
+        </div>
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Dubai Office</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 42279916</p>
+        </div>
+        <p style="color:#94A3B8;font-size:0.9rem;margin:0;">info@indexauh.com</p>
+      </div>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

@@ -1,0 +1,512 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const whoNeeds = [
+  "Professionals applying for jobs in the UAE",
+  "Students planning higher education",
+  "Families handling personal records",
+  "Businesses managing cross border activities",
+]
+
+const mandatory = [
+  "Employment",
+  "Residence visas",
+  "Education",
+  "Marriage",
+  "Business use",
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents Attestation",
+    icon: "👤",
+    docs: [
+      "Marriage certificate attestation",
+      "Birth certificate attestation",
+      "Divorce Certificate Attestation",
+      "Death Certificate Attestation",
+      "Transfer Certificate Attestation",
+      "Police Clearance Certificate (PCC)",
+      "Affidavit Attestation",
+      "Singleness Certificate Attestation",
+      "Medical Certificate Attestation",
+      "Adoption Certificate Attestation",
+    ],
+  },
+  {
+    category: "Educational Certificate Attestation",
+    icon: "🎓",
+    docs: [
+      "School and College Certificates",
+      "Master Degree Certificate Attestation",
+      "Engineering Degree Certificate Attestation",
+      "Diploma Certificate Attestation",
+      "Degree Certificate Attestation",
+      "Nursing Certificate Attestation",
+      "Transcripts and Mark Sheets Attestation",
+      "Professional Qualification Certificates Attestation",
+      "Certificate of Experience Attestation",
+      "Vocational and Technical Certificates",
+    ],
+  },
+  {
+    category: "Commercial Documents Attestation",
+    icon: "⚖️",
+    docs: [
+      "Memorandum of Association",
+      "Articles of Association",
+      "Certificate of Incumbency",
+      "Power of Attorney",
+      "Commercial Invoices",
+      "Certificate of Incorporation",
+      "Certificate of Good Standing",
+      "Board Resolution",
+      "Shareholder Resolution",
+      "Agency Agreement",
+    ],
+  },
+]
+
+const processRoutes = [
+  {
+    step: "01",
+    title: "Spain Issued Documents for UAE Use",
+    desc: "Documents issued in Spain must follow a specific order before use in the UAE.",
+    steps: [
+      "Verification from the relevant authority in Spain",
+      "Legalization by the required Spanish department",
+      "Attestation by the UAE embassy",
+      "Final attestation carried out by the UAE Ministry of Foreign Affairs",
+    ],
+  },
+  {
+    step: "02",
+    title: "UAE Issued Documents for Spain Use",
+    desc: "Documents issued in the UAE follow a different path.",
+    steps: [
+      "Local verification or notarization",
+      "Attestation from the UAE Ministry of Foreign Affairs",
+      "Final attestation from the Spanish consulate or embassy of Spain",
+    ],
+  },
+]
+
+const timingFactors = [
+  "Type of document",
+  "Issuing authority",
+  "Embassy workload",
+  "Translation requirements",
+]
+
+const feeFactors = [
+  "Category of document, including academic, personal, or business records",
+  "Country where the document was issued",
+  "Number of authorities involved in the process",
+  "Embassy or consulate handling the attestation",
+  "Translation requirements, when applicable",
+  "Urgency of the request and processing timeline",
+  "Additional verification or supporting documents required",
+]
+
+const challenges = [
+  "Incorrect order of attestation",
+  "Missing verification stamps",
+  "Translation related issues",
+  "Submission to the wrong authority",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Contact IndexAUH", desc: "Reach out to our team by phone, WhatsApp, or enquiry form. Share basic details about your document and its purpose." },
+  { step: "02", title: "Document Review", desc: "Our team checks your document to confirm eligibility and the correct attestation route based on where it was issued." },
+  { step: "03", title: "Authority Mapping", desc: "We identify the required authorities and coordinate with the embassy of Spain in UAE or the relevant consulate." },
+  { step: "04", title: "Embassy and Ministry Processing", desc: "Your document is processed through the necessary embassy and ministry stages in the correct order." },
+  { step: "05", title: "Status Updates and Completion", desc: "You receive regular updates until the attestation is completed and ready for use." },
+]
+
+const whyChoose = [
+  { title: "25+ Years of Experience", desc: "One of the most experienced certificate attestation service providers in the UAE with over 25 years of industry experience." },
+  { title: "Clear Guidance at Every Stage", desc: "Clear guidance at every stage of the attestation process." },
+  { title: "Careful Document Review", desc: "Careful review of documents before submission." },
+  { title: "Secure Handling", desc: "Secure handling of original certificates and records." },
+  { title: "Regular Status Updates", desc: "Regular updates on application status." },
+  { title: "Personal & Commercial Support", desc: "Support for both personal and commercial documents, with experience working with the embassy of Spain, Spain consulate in Dubai, and consulate of Spain in UAE." },
+]
+
+const faqs = [
+  { q: "Do I need to visit the embassy personally?", a: "Most cases do not require personal visits. Our team manages the process on your behalf." },
+  { q: "Is translation required for Spanish documents?", a: "Some documents need translation before submission. Guidance is provided after document review." },
+  { q: "Which authority will handle my document?", a: "The handling office depends on document type and place of issue. This may involve the embassy of Spain Abu Dhabi or the consulate general of Spain in Dubai." },
+]
+import DocumentCoverage from '../components/DocumentCoverage.astro';
+---
+
+<BaseLayout
+  title="Spain Embassy Attestation Services in the UAE | Indexauh"
+  description="Spain Embassy Attestation services in the UAE for personal, educational, and commercial documents. Trusted experts with 25+ years of experience."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .route-card { background: #fff; border: 1px solid #eef0f6; border-radius: 16px; padding: 24px; transition: all 0.25s; }
+  .route-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .five-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .five-col { grid-template-columns: 1fr !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Spain Embassy Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Spain Attestation</span>
+      <span class="idx-pill">Embassy Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      SPAIN EMBASSY ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Spain Embassy Attestation is required when documents need legal acceptance between Spain and the UAE. This process confirms that a document is genuine and approved by the concerned authorities. With more than 25 years of experience, IndexAUH manages the entire process and keeps you informed from start to finish.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW / WHAT IS IT ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Who Needs Spain Embassy Attestation?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">
+        Spain Embassy Attestation is required by people and businesses who plan to use documents between Spain and the UAE. Many applicants struggle because the process involves different offices and strict rules. Documents issued in Spain follow a different route than documents issued in the UAE. Documents submitted to the Spanish embassy or Spanish consulate often require this verification.
+      </p>
+      <p style="color:#2D3748;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 10px;">People usually need it for:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+        {mandatory.map(item => (
+          <div style="display:flex;align-items:center;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:10px;padding:10px 14px;">
+            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;">→</span>
+            <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;">{item}</p>
+          </div>
+        ))}
+      </div>
+      <p style="color:#2D3748;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 10px;">This service is commonly needed by:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        {whoNeeds.map(item => (
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:10px 14px;">
+            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/spain-flag.webp" alt="Spain embassy attestation UAE" style="width:100%;height:480px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Spain Embassy · UAE MOFA · Full Legalization</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Spain attestation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:90px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<DocumentCoverage
+  title="Our Spain Embassy Documents Attestation Services"
+  description="We handle attestation for a wide range of document categories across personal, educational, and commercial needs between Spain and the UAE."
+  imageSrc="/images/img-1.webp"
+  imageAlt="Document types for Spain attestation"
+  docTypes={docTypes}
+  country="spain"
+/>
+
+<!-- ════ PROCESS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="Spain embassy attestation process" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Spain Embassy Attestation Procedure</h2>
+      </div>
+    </div>
+
+    <!-- Two routes side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;" class="two-col">
+      {processRoutes.map(route => (
+        <div class="route-card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{route.step}</div>
+            <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0;">{route.title}</h3>
+          </div>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">{route.desc}</p>
+          <p style="font-size:0.78rem;font-weight:700;color:#38B2AC;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 10px;">Steps Involved</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            {route.steps.map((s, idx) => (
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-weight:800;font-size:0.72rem;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{idx + 1}</span>
+                <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{s}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Timing & Fees -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="two-col">
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does It Take?</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">The time required for Embassy Attestation in Spain depends on several factors:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {timingFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">IndexAUH helps reduce delays by submitting documents correctly the first time and tracking progress closely.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Spanish Embassy Attestation Fees</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Factors that influence the attestation fees include:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {feeFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Since every document follows a specific route, the exact fee can only be confirmed after review. Contact our team today for accurate details based on your attestation needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CHALLENGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Challenges People Face</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Spain Embassy Attestation does not need to feel confusing or stressful. The right support makes the process smooth and organized, helping you avoid repeated submissions.
+        </p>
+        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.1);">
+          <img
+            src="/images/img-40.webp"
+            alt="Common mistakes in Spain document attestation"
+            style="width:100%;height:320px;object-fit:cover;display:block;"
+          />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+            <p style="color:#fff;font-size:0.88rem;font-weight:700;margin:0;">Avoid these mistakes for a smooth attestation process</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        {challenges.map(c => (
+          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:14px 16px;">
+            <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+            <p style="font-size:0.9rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Start with IndexAUH?</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:600px;">
+      Starting Embassy Attestation in Spain with IndexAUH is simple and straightforward. You do not need to visit multiple offices or figure out the process on your own.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;text-align:left;" class="five-col">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:22px;position:relative;">
+          <div style="font-size:2.8rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:12px;">{s.step}</div>
+          <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <p style="color:#6B7280;font-size:0.88rem;line-height:1.7;margin:32px auto 0;max-width:700px;">
+      Clients often approach us for cases involving the embassy of Spain Abu Dhabi, embassy of Spain in Dubai, and the consulate of Spain in UAE. Our experience helps ensure the process moves forward without avoidable delays.
+    </p>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="IndexAUH Spain attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+  IndexAUH is one of the most experienced <a href="/certificate-attestation/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> service providers in the UAE. Thousands of satisfied clients across the UAE trust our services, backed by a structured process designed to save time and reduce repeat submissions.
+</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+      {whyChoose.map(b => (
+        <div class="benefit-card">
+          <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+          <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs on Spain Attestation</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">REACH OUT TO US TODAY</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Spain Embassy Attestation does not need to feel confusing or stressful. The right support makes the process smooth and organized. Contact IndexAUH to begin your Embassy Attestation with confidence.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Abu Dhabi Office</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 26311560</p>
+        </div>
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Dubai Office</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 42279916</p>
+        </div>
+        <p style="color:#94A3B8;font-size:0.9rem;margin:0;">info@indexauh.com</p>
+      </div>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

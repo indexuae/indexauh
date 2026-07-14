@@ -1,0 +1,502 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const whoNeeds = [
+  "You are moving to Qatar for a job",
+  "You are submitting papers for a family residence or spouse visa",
+  "You are studying in Qatar",
+  'You are <a href="/company-formation-in-qatar/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">setting up a business in Qatar</a>',
+  "You are submitting documents to Qatar government offices",
+]
+
+const mandatory = [
+  "Employment visas",
+  "Family and marriage visas",
+  "Education in Qatar",
+  "Business and legal submissions",
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents",
+    icon: "👤",
+    docs: [
+      "Marriage certificate attestation in Qatar",
+      "Birth certificate attestation for Qatar",
+      "Divorce Certificate attestation in Qatar",
+      "Qatar Death Certificate Attestation",
+      "Medical Certificate Attestation Qatar",
+      "Transfer Certificate Attestation",
+      "Qatar PCC",
+      "Affidavit",
+    ],
+  },
+  {
+    category: "Educational Documents",
+    icon: "🎓",
+    docs: [
+      "Qatar Embassy Degree Certificate Attestation",
+      "School leaving certificates",
+      "Qatar Diploma Certificate Attestation",
+      "Master Degree Certificate Attestation in Qatar",
+      "Engineering Degree Certificate Attestation",
+      "Nursing Degree Certificate Attestation in Qatar",
+    ],
+  },
+  {
+    category: "Commercial Documents",
+    icon: "⚖️",
+    docs: [
+      "Memorandum of Association (MOA)",
+      "Articles of Association (AOA)",
+      "Certificate of Incorporation",
+      "Commercial License",
+      "Board Resolutions",
+      "Power of Attorney",
+      "Commercial Invoices",
+    ],
+  },
+]
+
+const processRoutes = [
+  {
+    step: "01",
+    title: "Qatar Issued Documents — Used in the UAE",
+    desc: "This applies to documents issued in Qatar and required for use in the UAE. The attestation process confirms legal acceptance of Qatar documents in the UAE.",
+    steps: [
+      "Verification from Qatar authorities",
+      "Document review through the Ministry of Foreign Affairs in Qatar",
+      "Attestation from the United Arab Emirates Embassy in Qatar",
+      "Final approval from UAE MOFA",
+    ],
+  },
+  {
+    step: "02",
+    title: "UAE Issued Documents — Used in Qatar",
+    desc: "This applies to documents issued in the UAE and required for use in Qatar.",
+    steps: [
+      "Initial verification of the document",
+      "Notary or home department attestation",
+      'UAE <a href="/mofa-attestation-in-uae/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">MOFA attestation</a>',
+      "Qatar embassy attestation in the UAE",
+    ],
+  },
+]
+
+const timingFactors = [
+  "Type of document",
+  "Issuing country",
+  "Embassy requirements",
+  "Translation needs",
+]
+
+const feeFactors = [
+  "Certificate type",
+  "Number of documents",
+  "Embassy charges",
+  "MOFA fees",
+  '<a href="/legal-translation-in-uae/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">Legal translation</a> requirements',
+]
+const challenges = [
+  "Missing MOFA attestation",
+  "Wrong attestation order",
+  "Incomplete documents",
+  "Incorrect translations",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Free Consultation", desc: 'Contact our <a href="/" style="color:#1A202C;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">IndexAUH</a> team for a free consultation about your documents and requirements.' },
+  { step: "02", title: "Submit Documents", desc: "Submit your documents through secure pickup or drop off at your convenience." },
+  { step: "03", title: "Expert Processing", desc: "Our experts manage all steps with authorities and embassies on your behalf." },
+  { step: "04", title: "Doorstep Delivery", desc: "Your attested certificates are delivered to your address once completed." },
+  { step: "05", title: "Full Updates", desc: "We keep you informed at every stage throughout the entire process." },
+]
+
+const whyChoose = [
+  { title: "25+ Years of Experience", desc: 'Over 25 years of experience in <a href="/certificate-attestation-in-dubai/" style="color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;">certificate attestation</a> services in Qatar and across the UAE.' },
+  { title: "Expert Embassy Knowledge", desc: "Strong knowledge of Qatar embassy rules, MOFA procedures, and document flow." },
+  { title: "Secure Document Handling", desc: "Secure handling of original documents with full care and accountability throughout." },
+  { title: "Pickup & Delivery", desc: "Free document pickup and delivery across the UAE for your convenience." },
+  { title: "Dedicated Support", desc: "Dedicated support team throughout the process to answer queries and provide updates." },
+  { title: "No Hidden Charges", desc: "Clear cost details provided before starting. No hidden charges or surprises." },
+]
+
+const faqs = [
+  { q: "Is Qatar embassy attestation mandatory?", a: "Yes. Qatar authorities require attestation for official use. Documents without proper attestation will not be accepted by Qatar government departments." },
+  { q: "Do I need UAE MOFA before Qatar embassy attestation?", a: "Yes. MOFA attestation is a mandatory step before the Qatar embassy can process your document." },
+  { q: "Can UAE documents be attested for Qatar use?", a: "Yes. UAE issued documents can be attested for use in Qatar. Our team manages the full process including MOFA and Qatar embassy steps." },
+  { q: "Is UAE embassy attestation in Qatar required?", a: "In some cases, the United Arab Emirates embassy in Qatar attestation is required for reverse use. Our team will confirm the correct route based on your document." },
+]
+import DocumentCoverage from '../components/DocumentCoverage.astro';
+---
+
+<BaseLayout
+  title="Qatar Embassy Attestation in UAE | Indexauh"
+  description="Qatar Embassy Attestation by IndexAUH with 25 years of proven expertise. Secure, error-free processing across UAE. Speak to our experts today."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .route-card { background: #fff; border: 1px solid #eef0f6; border-radius: 16px; padding: 24px; transition: all 0.25s; }
+  .route-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .five-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .five-col { grid-template-columns: 1fr !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Qatar Embassy Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">Qatar Attestation</span>
+      <span class="idx-pill">Embassy Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      QATAR EMBASSY ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Qatar embassy attestation is required when you plan to use your documents in Qatar for work, family visa, education, or business purposes. Authorities in Qatar accept only attested documents. With over 25 years of experience, IndexAUH handles the full process with clarity and care. Our team understands embassy rules and document flow very well to avoid delays and rejections.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW / WHAT IS IT ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">What Is Qatar Embassy Attestation?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">
+        It is the official confirmation that your document is genuine and approved for use in Qatar. The Qatar embassy verifies the certificate after required approvals from the issuing country and MOFA. Qatar embassy document attestation confirms that your certificate is valid and accepted by Qatar authorities.
+      </p>
+      <p style="color:#2D3748;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 10px;">This process is mandatory for:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+        {mandatory.map(item => (
+          <div style="display:flex;align-items:center;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:10px;padding:10px 14px;">
+            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;">→</span>
+            <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;">{item}</p>
+          </div>
+        ))}
+      </div>
+      <p style="color:#2D3748;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 10px;">Who needs this service:</p>
+     <div style="display:flex;flex-direction:column;gap:8px;">
+  {whoNeeds.map(item => (
+    <div style="display:flex;align-items:flex-start;gap:12px;background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:10px 14px;">
+      <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+      <p style="font-size:0.88rem;color:#374151;line-height:1.5;margin:0;" set:html={item} />
+    </div>
+  ))}
+</div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/qatar-flag.webp" alt="Qatar embassy attestation UAE" style="width:100%;height:480px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Qatar Embassy · UAE MOFA · Full Legalization</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Qatar attestation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:90px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<DocumentCoverage
+  title="Our Qatar Embassy Attestation Services"
+  description="We handle attestation for a wide range of document categories across personal, educational, and commercial needs. This applies to document attestation Qatar for both UAE residents and Qatar nationals."
+  imageSrc="/images/img-1.webp"
+  imageAlt="Document types for Qatar attestation"
+  docTypes={docTypes}
+  country="qatar"
+/>
+
+<!-- ════ PROCESS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="Qatar embassy attestation process" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Embassy Attestation Procedure for Qatar</h2>
+      </div>
+    </div>
+
+    <!-- Two routes side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;" class="two-col">
+      {processRoutes.map(route => (
+        <div class="route-card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{route.step}</div>
+            <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0;">{route.title}</h3>
+          </div>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">{route.desc}</p>
+          <p style="font-size:0.78rem;font-weight:700;color:#38B2AC;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 10px;">Steps Involved</p>
+         <div style="display:flex;flex-direction:column;gap:8px;">
+  {route.steps.map((s, idx) => (
+    <div style="display:flex;align-items:flex-start;gap:10px;">
+      <span style="background:#F0FFFE;border:1px solid #B2F5EA;color:#2D3748;font-weight:800;font-size:0.72rem;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">{idx + 1}</span>
+      <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;" set:html={s} />
+    </div>
+  ))}
+</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Timing & Fees -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="two-col">
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Processing Time</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {timingFactors.map(f => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+              <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+            </div>
+          ))}
+        </div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Most cases are completed within a standard timeframe. Urgent handling is available based on document type.</p>
+      </div>
+      <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+        <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Qatar Embassy Attestation Fees</h3>
+        <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Qatar embassy attestation fees vary based on:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+  {feeFactors.map(f => (
+    <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+      <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span><span set:html={f} />
+    </div>
+  ))}
+</div>
+        <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">We provide clear cost details before starting. There are no hidden charges. Contact us to get an exact estimate based on your documents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CHALLENGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes That Cause Delays</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Many applications face delays due to small but important errors. Our experience helps avoid these issues and ensures smooth attestation in Qatar without repeated submissions.
+        </p>
+        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.1);">
+          <img
+            src="/images/img-40.webp"
+            alt="Common mistakes in Qatar document attestation"
+            style="width:100%;height:320px;object-fit:cover;display:block;"
+          />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+            <p style="color:#fff;font-size:0.88rem;font-weight:700;margin:0;">Avoid these mistakes for a smooth attestation process</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        {challenges.map(c => (
+          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:14px 16px;">
+            <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+            <p style="font-size:0.9rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+          </div>
+        ))}
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:16px;margin-top:4px;">
+          <p style="font-size:0.88rem;font-weight:700;color:#1A202C;margin:0 0 4px;">How IndexAUH Helps</p>
+          <p style="font-size:0.83rem;color:#6B7280;line-height:1.65;margin:0;">This attestation process does not have to be confusing. With the right guidance, the process becomes smooth and clear. Our expertise makes document attestation Qatar simple and stress free.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Getting Started with Qatar Embassy Attestation</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
+      Starting the process with us is simple. Follow these steps to begin your Qatar embassy attestation with IndexAUH.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;text-align:left;" class="five-col">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:22px;position:relative;">
+  <div style="font-size:2.8rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:12px;">{s.step}</div>
+  <h3 style="font-size:0.88rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+  <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:0;" set:html={s.desc} />
+</div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="IndexAUH Qatar attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          Contact IndexAUH today to begin your Qatar embassy attestation process with confidence. Our team ensures accuracy, clarity, and smooth completion from start to finish. Clients across the UAE trust us for Qatar embassy certificate attestation services.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+     {whyChoose.map(b => (
+  <div class="benefit-card">
+    <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+    <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc} />
+  </div>
+))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">HOW CAN YOU CONTACT US TODAY?</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Start your Qatar Embassy Attestation with expert guidance from our experienced team. Call us today and our team will guide you through the complete process clearly and quickly.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Abu Dhabi Office</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 26311560</p>
+        </div>
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Dubai Office</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 42279916</p>
+        </div>
+        <p style="color:#94A3B8;font-size:0.9rem;margin:0;">info@indexauh.com</p>
+      </div>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>

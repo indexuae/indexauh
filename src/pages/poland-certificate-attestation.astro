@@ -1,0 +1,491 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const whenNeeded = [
+  "Employment visa approval",
+  "Family visa processing",
+  "University admission",
+  "Professional license",
+  "Business set up UAE",
+  "Court and legal matters",
+]
+
+const docTypes = [
+  {
+    category: "Personal Documents",
+    icon: "👤",
+    docs: [
+      "Polish Marriage certificate attestation",
+      "Polish Birth certificate attestation",
+      "Polish Divorce Certificate Attestation",
+      "Polish Death Certificate Attestation",
+      "Polish Police Clearance Certificate Attestation",
+      "Medical Certificate Attestation",
+      "Single Status Certificate Attestation",
+      "Affidavit",
+    ],
+  },
+  {
+    category: "Educational Documents",
+    icon: "🎓",
+    docs: [
+      "Polish Degree Certificate Attestation",
+      "Diploma Certificate Attestation",
+      "School Certificate Attestation",
+      "Mark Sheets Attestation",
+      "Technical Certificate Attestation",
+      "Nursing Certificate Attestation",
+      "Engineering Certificate Attestation",
+      "Transcript Attestation",
+    ],
+  },
+  {
+    category: "Commercial Documents",
+    icon: "⚖️",
+    docs: [
+      "Power of Attorney Attestation",
+      "Company Incorporation Documents Attestation",
+      "Memorandum of Association Attestation",
+      "Articles of Association Attestation",
+      "Board Resolution Attestation",
+      "Commercial Invoice Attestation",
+      "Commercial License",
+    ],
+  },
+]
+
+const processSteps = [
+  { step: "01", title: "Notary Attestation in Poland", desc: "The document is first verified by a notary authority in Poland. This confirms the document is genuine before it proceeds to the next authority." },
+  { step: "02", title: "Ministry of Foreign Affairs in Poland", desc: "After notary verification, the Polish Ministry of Foreign Affairs confirms the document, adding its official approval before it moves to the UAE Embassy." },
+  { step: "03", title: "UAE Embassy Attestation in Poland", desc: "The UAE Embassy in Poland legalizes the certificate for use in the UAE, confirming Polish authorities have validated the document." },
+  { step: "04", title: "MOFA Attestation in UAE", desc: "At the final stage, the UAE Ministry of Foreign Affairs places its official approval stamp on the document, making it fully valid for use inside the UAE." },
+]
+
+const docsRequired = [
+  "Original certificate",
+  "Passport copy",
+  "UAE visa copy if available",
+  "Authorization letter in some cases",
+]
+
+const timingFactors = [
+  "Type of document",
+  "Authority workload",
+  "Embassy approval time",
+]
+
+const feeFactors = [
+  "Type of certificate",
+  "Number of stamps required",
+  "Translation requirement",
+]
+
+const challenges = [
+  "Submitting laminated certificates",
+  "Sending unclear copies",
+  "Using incorrect translations",
+  "Choosing unapproved agents",
+]
+
+const getStartedSteps = [
+  { step: "01", title: "Contact Our Team", desc: "Call or message us with your document details. Our team responds quickly." },
+  { step: "02", title: "Free Document Review", desc: "We check your certificate and explain the complete Poland Certificate Attestation process." },
+  { step: "03", title: "Secure Processing", desc: "We handle the full Poland Certificate Attestation through the required authorities." },
+  { step: "04", title: "Safe Return", desc: "You receive your attested document securely and on time." },
+]
+
+const whyChoose = [
+  { title: "25+ Years of Experience", desc: "Over 25 years of experience in <a href='/certificate-attestation-in-the-uae/' style='color:#CBD5E0;font-weight:700;text-decoration:underline;text-decoration-color:#38B2AC;text-underline-offset:3px;'>UAE attestation services</a> with thousands of successful cases." },
+  { title: "Expert Knowledge of Procedures", desc: "Strong understanding of embassy rules, ministry procedures, and Poland-specific attestation requirements." },
+  { title: "Expert Handling End-to-End", desc: "Expert handling of Poland Certificate Attestation from start to finish with full accuracy." },
+  { title: "Document Review Before Submission", desc: "Proper document review before submission to avoid rejection and unnecessary delays." },
+  { title: "Pickup & Delivery Options", desc: "Pickup and delivery service across the UAE for your convenience with on-time completion." },
+  { title: "Dedicated Support Team", desc: "Dedicated customer support team to answer your queries with regular status updates throughout." },
+]
+
+const faqs = [
+  { q: "Is the original certificate required?", a: "Yes. Authorities need the original document for stamping. Photocopies are not accepted for official attestation." },
+  { q: "Is translation needed?", a: "Some documents may require certified translation before submission. Our team will advise you on this during the initial review." },
+  { q: "Can someone else submit on my behalf?", a: "Yes. Authorization can be arranged. An authorization letter allows a service provider to process the document on your behalf." },
+  { q: "Can old certificates be attested?", a: "Yes. As long as the document is genuine and complete, old certificates can be submitted for attestation." },
+]
+import DocumentCoverage from '../components/DocumentCoverage.astro';
+---
+
+<BaseLayout
+  title="Poland Certificate Attestation in UAE | Indexauh"
+  description="Poland Certificate Attestation in UAE by IndexAUH with 25 year experience. Fast, secure process for all documents. Contact us today to start."
+>
+
+<style>
+  .sec-inner { position: relative; z-index: 1; }
+  .idx-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 0.78rem; padding: 5px 14px; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+  .step-card { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid #eef0f6; border-radius: 14px; padding: 18px; transition: all 0.25s; }
+  .step-card:hover { border-color: #B2F5EA; box-shadow: 0 10px 24px rgba(56,178,172,0.08); }
+  .benefit-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; }
+  .faq-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .faq-q { width: 100%; background: #fff; border: none; text-align: left; padding: 18px 20px; font-size: 0.9rem; font-weight: 600; color: #1A202C; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s; }
+  .faq-a.open { max-height: 240px; padding: 0 20px 16px; }
+  .faq-icon { font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .split-grid { display: grid !important; }
+  .three-col { display: grid !important; }
+  .two-col { display: grid !important; }
+  .four-col { display: grid !important; }
+
+  @media(max-width:768px){
+    .hero-title { font-size: 2rem !important; }
+    .split-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .four-col { grid-template-columns: 1fr !important; }
+    .img-first { order: -1 !important; }
+    .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+    .hero-btns a { text-align: center; justify-content: center; }
+  }
+</style>
+
+<!-- ════════════ HERO ════════════ -->
+<section style="position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;">
+  <img
+    src="/images/img-16.webp"
+    alt="Poland Certificate Attestation in the UAE"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"
+  />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,32,44,0.92) 0%,rgba(45,55,72,0.80) 100%);"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:880px;margin:0 auto;padding:96px 24px;text-align:center;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;">
+      <span class="idx-pill">MOFA Attestation</span>
+      <span class="idx-pill">Embassy Attestation</span>
+      <span class="idx-pill">25 Years of Trust</span>
+    </div>
+    <h1 class="hero-title" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin:0 0 20px;">
+      POLAND CERTIFICATE ATTESTATION<br/>IN THE UAE
+    </h1>
+    <p style="color:#B2F5EA;font-size:1rem;line-height:1.8;margin:0 auto 32px;max-width:660px;">
+      Poland Certificate Attestation is the official process that makes your Polish documents legally valid in the UAE. It confirms that your certificate is genuine and approved by the concerned authorities. With over 25 years of experience in the UAE, we handle every stage of Poland Certificate Attestation with clarity and care. Our team understands the complete procedure and ensures your documents are processed correctly from start to finish.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="hero-btns">
+      <a href="#get-in-touch" style="display:inline-flex;align-items:center;gap:8px;background:#38B2AC;color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">Get Free Consultation &rarr;</a>
+      <a href="#details" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:0.9rem;padding:13px 28px;border-radius:9999px;text-decoration:none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OVERVIEW / WHY NEEDED ════ -->
+<section id="details" style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner split-grid" style="max-width:1280px;margin:0 auto;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;">
+    <div>
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="display:inline-block;width:28px;height:1px;background:#2D3748;"></span>Service Overview
+      </p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#1A202C;line-height:1.2;margin:0 0 18px;">Why is Poland Certificate Attestation Required in UAE?</h2>
+      <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:18px;">
+        UAE government departments ask for attested documents for many services. This protects employers, universities, and government offices from false documents. Poland Certificate Attestation confirms that your certificate is genuine and builds trust with UAE authorities so your documents are accepted without issue.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+        {whenNeeded.map(item => (
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#F8FAFF;border:1px solid #eef0f6;border-radius:12px;padding:12px 16px;">
+            <span style="color:#38B2AC;font-weight:bold;font-size:1rem;flex-shrink:0;margin-top:2px;">→</span>
+            <p style="font-size:0.88rem;color:#374151;line-height:1.6;margin:0;">{item}</p>
+          </div>
+        ))}
+      </div>
+      <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:12px;padding:18px;">
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.75;margin:0;">We make the process simple, clear, and stress free for you. Our team guides you at every stage from start to finish with expert care.</p>
+      </div>
+    </div>
+
+    <div>
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <img src="/images/poland-flag.webp" alt="Poland document attestation UAE" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.72) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 4px;">Poland Notary · Polish MFA · UAE Embassy · MOFA UAE</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Complete Poland attestation handled end-to-end</p>
+        </div>
+        <div style="position:absolute;bottom:80px;left:-14px;background:#2D3748;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.75rem;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);">
+          25+ Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DOCUMENT TYPES ════ -->
+<DocumentCoverage
+  title="Our Polish Certificate Attestation Services"
+  description="We handle attestation for a wide range of document categories across personal, educational, and commercial needs."
+  imageSrc="/images/img-1.webp"
+  imageAlt="Document types for Poland attestation"
+  docTypes={docTypes}
+  country="poland"
+/>
+
+<!-- ════ PROCESS STEPS ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1200px;margin:0 auto;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.1);margin-bottom:52px;">
+      <img src="/images/img-7.webp" alt="Poland attestation process steps" style="width:100%;height:240px;object-fit:cover;object-position:center 35%;display:block;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,32,44,0.88) 0%,rgba(26,32,44,0.5) 55%,transparent 100%);"></div>
+      <div style="position:absolute;top:50%;left:40px;transform:translateY(-50%);">
+        <p style="color:#38B2AC;font-weight:700;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px;">Step-by-Step</p>
+        <h2 style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;margin:0;max-width:500px;line-height:1.25;">Poland Certificate Attestation Procedure</h2>
+      </div>
+    </div>
+
+    <p style="color:#4B5563;font-size:0.95rem;line-height:1.8;margin:0 0 32px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto;">
+      The process follows clear stages. Each stage is important. Understanding each step helps you avoid rejection and delay. Many people face problems because they skip a stage or submit incomplete documents.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;" class="split-grid">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {processSteps.map(s => (
+          <div class="step-card">
+            <div style="width:42px;height:42px;border-radius:10px;background:#2D3748;color:#38B2AC;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">{s.step}</div>
+            <div>
+              <p style="font-size:1.05rem;font-weight:700;color:#1A202C;margin:0 0 4px;">{s.title}</p>
+              <p style="font-size:0.9rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:14px;padding:18px;margin-top:4px;">
+          <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;">Every stage plays a major role in Poland Certificate Attestation. Missing even one step can result in rejection, which is why proper guidance is important from the beginning.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <!-- Documents Required -->
+        <div style="background:#fff;border:1px solid #B2F5EA;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 14px;border-left:3px solid #38B2AC;padding-left:12px;">Documents Required for Poland Certificate Attestation</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">To start the process, you need:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {docsRequired.map(d => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{d}
+              </div>
+            ))}
+          </div>
+          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Our team checks everything before submission to avoid mistakes and delays before the process begins.</p>
+        </div>
+
+        <!-- Timing -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">How Long Does Poland Certificate Attestation Take?</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">Processing time depends on several factors:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {timingFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Standard processing usually takes several working days. Contact our team for a clear timeline based on your specific document.</p>
+        </div>
+
+        <!-- Fees -->
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;">
+          <h3 style="font-size:0.95rem;font-weight:800;color:#1A202C;margin:0 0 8px;border-left:3px solid #38B2AC;padding-left:12px;">Cost of Poland Certificate Attestation in UAE</h3>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.6;margin:0 0 14px;">The cost depends on:</p>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            {feeFactors.map(f => (
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#4B5563;">
+                <span style="color:#38B2AC;font-weight:bold;flex-shrink:0;">→</span>{f}
+              </div>
+            ))}
+          </div>
+          <p style="font-size:0.8rem;color:#6B7280;line-height:1.6;margin:14px 0 0;">Educational, personal, and commercial documents have different charges. Contact our team for an exact quotation. We explain the full cost clearly before starting the process.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CHALLENGES ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="two-col">
+      <div>
+        <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">What to Watch For</p>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#1A202C;margin:0 0 14px;">Common Mistakes to Avoid</h2>
+        <p style="color:#4B5563;font-size:0.9rem;line-height:1.8;margin-bottom:24px;">
+          Many delays happen due to small errors. We review your certificate before submission to reduce rejection risk and save time.
+        </p>
+        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.1);">
+          <img
+            src="/images/img-40.webp"
+            alt="Common mistakes in Poland document attestation"
+            style="width:100%;height:320px;object-fit:cover;display:block;"
+          />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+            <p style="color:#fff;font-size:0.88rem;font-weight:700;margin:0;">Avoid these mistakes for a smooth attestation process</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        {challenges.map(c => (
+          <div style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;padding:12px 16px;">
+            <span style="color:#E53E3E;font-weight:bold;font-size:1rem;flex-shrink:0;">!</span>
+            <p style="font-size:0.88rem;color:#4B5563;line-height:1.5;margin:0;">{c}</p>
+          </div>
+        ))}
+        <div style="background:#F0FFFE;border:1px solid #B2F5EA;border-radius:10px;padding:16px;margin-top:8px;">
+          <p style="font-size:0.88rem;color:#4B5563;line-height:1.7;margin:0;font-weight:600;">Need Expert Support?</p>
+          <p style="font-size:0.85rem;color:#6B7280;line-height:1.65;margin:6px 0 0;">Avoid rejection and complete your process the right way. Choose IndexAUH for clear guidance and professional handling of your documents.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GET STARTED ════ -->
+<section style="background:#F0FFFE;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(45,55,72,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(45,55,72,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Simple Process</p>
+    <h2 style="font-size:2rem;font-weight:900;color:#1A202C;margin:0 0 14px;">How to Get Started with Poland Certificate Attestation?</h2>
+    <p style="color:#4B5563;font-size:1rem;line-height:1.75;margin:0 auto 44px;max-width:560px;">
+      Starting is simple. Follow these steps to begin your Poland Certificate Attestation with IndexAUH.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;" class="four-col">
+      {getStartedSteps.map(s => (
+        <div style="background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:24px;position:relative;">
+          <div style="font-size:3rem;font-weight:900;color:#B2F5EA;line-height:1;margin-bottom:14px;">{s.step}</div>
+          <h3 style="font-size:0.92rem;font-weight:800;color:#1A202C;margin:0 0 8px;">{s.title}</h3>
+          <p style="font-size:0.82rem;color:#6B7280;line-height:1.6;margin:0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY CHOOSE INDEX ════ -->
+<section style="background:#1A202C;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(56,178,172,0.18) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;margin-bottom:52px;" class="split-grid">
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.3);">
+        <img src="/images/img-3.webp" alt="IndexAUH Poland attestation team" style="width:100%;height:340px;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,32,44,0.75) 100%);"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+          <p style="color:#fff;font-size:0.9rem;font-weight:800;margin:0 0 3px;">IndexAUH</p>
+          <p style="color:#B2F5EA;font-size:0.75rem;margin:0;">Abu Dhabi · Dubai · Global Network</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Why Choose Us</p>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.2;margin:0 0 16px;">Why Choose IndexAUH?</h2>
+        <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;">
+          Poland Certificate Attestation is an important step for your future in the UAE. One small error can delay your visa or job process. We have more than 25 years of experience handling attestation and international document approvals. Our team understands how important your certificate is for your future plans and focuses on accuracy and smooth processing.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="three-col">
+  {whyChoose.map(b => (
+    <div class="benefit-card">
+      <h3 style="font-size:0.92rem;font-weight:800;color:#fff;margin:0 0 8px;border-bottom:1px solid rgba(56,178,172,0.3);padding-bottom:8px;">{b.title}</h3>
+      <p style="font-size:0.9rem;color:#CBD5E0;line-height:1.65;margin:0;" set:html={b.desc}></p>
+    </div>
+  ))}
+</div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section style="background:#fff;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 48px,rgba(56,178,172,0.04) 48px,rgba(56,178,172,0.04) 49px);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:820px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p style="color:#2D3748;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:8px;">Got Questions?</p>
+      <h2 style="font-size:2.2rem;font-weight:900;color:#1A202C;margin:0;">FAQs on Poland Certificate Attestation</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {faqs.map((f, i) => (
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>{i + 1}. {f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p style="color:#4B5563;font-size:0.875rem;line-height:1.75;margin:0;">{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GET IN TOUCH ════════════ -->
+<section id="get-in-touch" style="background:#2D3748;padding:76px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(56,178,172,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div class="sec-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start;">
+
+    <div style="flex:1;min-width:280px;">
+      <p style="color:#38B2AC;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.75rem;margin-bottom:12px;">Get In Touch</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin:0 0 18px;">HOW CAN YOU CONTACT US TODAY?</h2>
+      <p style="color:#B2F5EA;font-size:1.05rem;line-height:1.8;margin-bottom:16px;">
+        Start your Poland Certificate Attestation with expert guidance from our experienced team. Speak to our experts today and complete your attestation without stress. We are ready to guide you from the first call until you receive your attested document.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:28px;">
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Abu Dhabi Office</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 26311560</p>
+        </div>
+        <div>
+          <p style="color:#fff;font-weight:800;font-size:0.95rem;margin:0 0 6px;">Dubai Office</p>
+          <p style="color:#94A3B8;font-size:0.95rem;line-height:1.7;margin:0;">Mob: (+971) 529300200<br/>Tel: (+971) 42279916</p>
+        </div>
+        <p style="color:#94A3B8;font-size:0.9rem;margin:0;">info@indexauh.com</p>
+      </div>
+      <a href="tel:+971529300200" style="display:inline-flex;align-items:center;gap:10px;background:#38B2AC;color:#fff;font-weight:900;font-size:0.95rem;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 4px 20px rgba(56,178,172,0.4);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        CALL: (+971) 529 300 200
+      </a>
+    </div>
+
+    <div style="flex:1;min-width:280px;background:#fff;border-radius:22px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="font-size:1.2rem;font-weight:700;color:#1A202C;margin:0 0 22px;">Free Consultation</h3>
+      <ContactForm />
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => {
+        x.classList.remove('open');
+        (x.querySelector('.faq-a') as HTMLElement).classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        (item.querySelector('.faq-a') as HTMLElement).classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+
+</BaseLayout>
